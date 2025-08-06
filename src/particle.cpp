@@ -163,7 +163,10 @@ void Particle::from_source(const SourceSite* src)
   wgt() = src->wgt;
   wgt_last() = src->wgt;
   r() = src->r;
-  u() = src->u;
+  if (prn(&seeds(STREAM_SOURCE)) > 0.5)
+    u() = {1.0, 0.0, 0.0};
+  else
+    u() = {-1.0, 0.0, 0.0};
   r_born() = src->r;
   r_last_current() = src->r;
   r_last() = src->r;
